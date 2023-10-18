@@ -158,6 +158,15 @@ def decreasing_worst_fit(scheduler):
     return next_fit(
         scheduler, sorted(scheduler.task_list,
                           key=lambda t: -float(t.wcet) / t.period))
+    
+def increasing_worst_fit(scheduler):
+    """
+    Worst-Fit with tasks inversely sorted by their u_i.
+    """
+
+    return next_fit(
+        scheduler, sorted(scheduler.task_list,
+                          key=lambda t: float(t.wcet) / t.period))
 
 
 class PartitionedScheduler(Scheduler):
